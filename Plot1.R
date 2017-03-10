@@ -1,8 +1,8 @@
-# Exploratory Data Analysis - Assignment 2 - Question 1
+# Exploratory Data Analysis - Assignment 2 - Question 1 "Plot 1"
 
 # read the RDS source files -  NEI & summary files
-NEI <- readRDS("./R/summarySCC_PM25.rds")
-SCC <- readRDS("./R/Source_Classification_Code.rds")
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
 
 # Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? 
 # Using the base plotting system, make a plot showing the total PM2.5 emission from all sources 
@@ -12,11 +12,13 @@ SCC <- readRDS("./R/Source_Classification_Code.rds")
 EmissionAgg <- aggregate(Emissions ~ year, NEI, sum)
 
 # Generate the plot in the source directory
-png('./R/plot1.png')
+png('plot1.png')
+# To color the plot
+pltClrs <- c("red", "blue", "green", "yellow")
 
 barplot(EmissionAgg$Emissions, names.arg=EmissionAgg$year, 
         xlab="Years", ylab=expression('Total PM'[2.5]*' emission'),
-        main=expression('Total PM'[2.5]*' emissions in Years'))
+        main=expression('Total PM'[2.5]*' emissions in Years'), col=pltClrs)
 
 dev.off()
 
